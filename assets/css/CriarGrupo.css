@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+body{
+    background-color: #303238;
+}
+
+
+
+section{
+    padding: 28px 8%;  
+}
+
+#cta{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 5%;
+    
+}
+
+#cta .title {
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+}
+
+#cta .title span {
+    color: #f78113;
+}
+
+#cta .description{
+    font-size: 1.2rem;
+    color: #fff;
+}
+main{
+    display: flex;
+    justify-content: center;    
+}
+
+.container{ 
+    margin-top: 5%;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    background-color: #24252a;
+    box-shadow: 0px 3px 10px #f78113;
+    border-radius: 8px;
+}
+form{
+    width: 100%;
+}
+.input-group{
+    display: flex;
+    width: 100%;
+    z-index: 0;
+    align-items: center;
+}
+.input-box-titulo{
+    display: flex;
+    background-color: #24252a;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.input-titulo{
+   display: flex;
+}
+
+.input-titulo input{
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.input-box{
+    display: flex;
+    justify-content: space-between;
+    background-color: #24252a;
+    padding: 10px;
+    border-radius: 10px;
+}
+.input input{
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.input-series{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 40px;
+}
+
+.input-series input{
+    width: 100%;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.input-reps{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 40px;
+    
+}
+
+.input-reps input{
+    width: 100%;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.input-select select{
+    width: 100px;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.input-exercicios{
+    width: 275px;
+    height: 35px;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    border-radius: 10px;
+    color: #fff; 
+}
+
+.input-exercicios input{
+    width: 275px;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    
+}
+.input-box-aluno{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.input-alunos {
+    width: 20%;
+}
+.input-alunos input{
+    width: 100%;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+#opcoes-alunos{
+    padding: 5px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 2;
+    position: relative;
+    display: none;
+}
+#AlunoSelecionado{
+    padding: 5px;
+    color: #fff;
+    display: none;
+}
+#opcoes-exercicio{
+    width: 30%;
+    padding: 5px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+#opcoes-exercicios1{
+    width: 220px;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+#opcoes-exercicios1 .option:hover{
+    color: #f78113;
+}
+
+.option{
+    padding: 5px;
+}
+.input-add-linha{
+    width: 10%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.input-add-linha ion-icon{
+    color: #f78113;
+    padding: 0px 0px 0px 10px;
+}
+.remover-linha-Exercicio{
+    display: none;
+}
+.input-select select:focus,
+.input-select select:hover {
+    background-color: #24252a; /* Cor de fundo desejada */
+    outline: none;
+    
+}
+
+.fas{
+    color: #f78113;
+    padding: 5px;
+}
+
+.title{
+    color: #fff;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.divisoria{
+    background-color: #fff;
+    width: 3px;
+    height: 85px;
+}
+
+.divisoria-deitada{
+    background-color: #fff;
+    width: 100%;
+    height: 3px;
+}
+
+.titulo{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+}
+
+.input-comentarios{
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+.submit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.submit-button button{
+    background-color: #24252a;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    transition: .5s;
+    border: 0;
+}
+
+.btn{
+    position: relative;
+    display: inline-block;
+    padding: 12px 20px;
+    color: #f78113;
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-top: 30px;
+    transition: .5s;
+    overflow: hidden;
+    margin-left: 20px;
+}
+.btn:hover{
+    background: #f78113;
+    border-radius: 5px;
+    color: #fff;
+}

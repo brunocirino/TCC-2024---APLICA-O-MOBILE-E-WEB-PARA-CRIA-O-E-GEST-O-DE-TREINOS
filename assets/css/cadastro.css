@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+    background-color: #303238;
+}
+
+#content{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    display: block;
+    width: 80%;
+    background-color: #24252a;
+    box-shadow: 0px 3px 10px #f78113;
+    border-radius: 10px;
+}
+
+.entradas{
+    display: block;
+}
+form h2{
+    margin-bottom: 30px;
+    padding: 10px;
+    font-size: 30px;
+    color: #f78113;
+    text-align: center;
+}
+form .box-user{
+    position: relative;
+    padding-left: 10px;
+}
+form .box-user input{
+    width: 100%;
+    padding: 10px 0;
+    outline: none;
+    border: 0;
+    background: transparent;
+    border-bottom: 1px solid #f78113;
+    color: #f78113;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.divisoria{
+    background-color: #fff;
+    width: 3px;
+    height: auto;
+}
+.input-group{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background-color: #24252a;
+}
+.input-group-pessoal{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background-color: #24252a;
+}
+.input-group-login{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background-color: #24252a;
+}
+.input-group-endereco{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background-color: #24252a;
+}
+.input-img {
+    width: 50%;
+    
+    
+}
+.input-img img{
+    width: 100%;
+    
+    
+}
+.SubTitulo-1{
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: #dd7411;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.SubTitulo-2{
+    width: 93%;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: #dd7411;
+    margin-bottom: 20px;
+}
+
+.SubTitulo-3{
+    width: 93%;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: #dd7411;
+}
+.input-box{
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+.input-box input{
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+    background-color: transparent;
+    color: #fff;
+}
+
+.input-box input:hover{
+    background-color: #f78113;
+}
+
+.input-box input:focus-visible{
+    outline: 1px solid #f78113;
+}
+
+.input-box label,
+.gender-title h6{
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #dd7411;
+}
+
+.input-box input::placeholder{
+    color: #fff;
+}
+.box-user{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+button{
+    background: transparent;
+    border: none;
+    margin: none;
+    padding: 0;
+}
+form .box-user label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    color: #f78113;
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+form .box-user input:focus~label,
+form .box-user input:valid~label
+{
+    top: -23px;
+    left: 0;
+    color: #f79335;
+    font-size: 12px;
+}
+
+.forget{
+    font-size: 12px;
+    color: #f78113;
+    float: right;
+    text-decoration: none;
+    
+}
+
+.forget:hover{
+    font-size: 12px;
+    color: #f87604;
+    float: right;
+    text-decoration: none;
+    
+}
+
+.container-button{
+    text-align: center;
+    
+}
+
+.btn{
+    position: relative;
+    display: inline-block;
+    padding: 12px 20px;
+    color: #f78113;
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-top: 30px;
+    transition: .5s;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.btn:hover{
+    background: #f78113;
+    border-radius: 5px;
+    color: #fff;
+}
+.btn span{
+    position: absolute;
+    display: block;
+}
+.btn span:nth-child(1){
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #f78113);
+    animation: btn1 1s linear infinite;
+}
+@keyframes btn1{
+    0%{
+        left: -100%;
+    }
+    50%,
+    100%{
+        left: 100%;
+    }
+}
+.btn span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #dd7411);
+    animation: btn2 1s linear infinite;
+    animation-delay: .20s;
+}
+@keyframes btn2{
+    0%{
+        top: -100%;
+    }
+    50%,
+    100%{
+        top: 100%;
+    }
+}
+.btn span:nth-child(3){
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(270deg, transparent, #dd7616);
+    animation: btn3 1s linear infinite;
+    animation-delay: .45s;
+}
+@keyframes btn3{
+    0%{
+        right: -100%;
+    }
+    50%,
+    100%{
+        right: 100%;
+    }
+}
+.btn span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(26deg, transparent, #f78113);
+    animation: btn4 1s linear infinite;
+    animation-delay: .70s;
+}
+@keyframes btn4{
+    0%{
+        bottom: -100%;
+    }
+    50%,
+    100%{
+        bottom: 100%;
+    }
+}
+
+
+.gender-group{
+    padding: 5px;  
+}
+
+.format-gender-input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 1px 1px 6px #0000001c;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.gender-input{ 
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.gender-input input{
+    margin-right: 0.35rem;
+}
+
+.gender-input label{
+    font-size: 0.81rem;
+    font-weight: 600;
+    color: #aaa3a3
+}
+
+.gender-input label:hover{
+    color: #f78113;
+}
+

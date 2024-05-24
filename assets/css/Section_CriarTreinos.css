@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+body{
+    background-color: #24252a;
+}
+
+#criarTreinos{
+    display: flex;
+    min-height: calc(100vh- 198px);
+    background-image: url("../img/banner2.jpg");
+}
+
+section{
+    padding: 28px 8%;  
+}
+
+#cta{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 5%;
+    
+}
+
+#cta .title {
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+}
+
+#cta .title span {
+    color: #f78113;
+}
+
+#cta .description{
+    font-size: 1.2rem;
+    color: #fff;
+}
+main{
+    display: flex;
+    justify-content: center;    
+    flex-direction: column;
+}
+
+.container{ 
+    margin-top: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    width: 80%;
+    background-color: #24252a;
+    box-shadow: 0px 3px 10px #464646;
+    border-radius: 8px;
+}
+form{
+    width: 100%;
+}
+.input-group{
+    display: flex;
+    width: 100%;
+    z-index: 0;
+}
+
+.input-box{
+    display: flex;
+    justify-content: space-between;
+    background-color: #24252a;
+    padding: 10px;
+    border-radius: 10px;
+}
+.input input{
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.input-select select{
+    width: 100px;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.input-exercicios{
+    width: 275px;
+    height: 35px;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    border-radius: 10px;
+    color: #fff; 
+}
+
+.input-exercicios input{
+    width: 275px;
+    padding: 5px;
+    text-decoration: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    
+}
+
+#opcoes-exercicio   s1{
+    width: 220px;
+    padding: 5px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+#opcoes-exercicios1 .option:hover{
+    color: #f78113;
+}
+.input-add-linha{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.input-add-linha ion-icon{
+    color: #f78113;
+    padding: 0px 0px 0px 10px;
+}
+.remover-linha-Exercicio{
+    display: none;
+}
+.input-select select:focus,
+.input-select select:hover {
+    background-color: #24252a; /* Cor de fundo desejada */
+    outline: none;
+    
+}
+
+.fas{
+    color: #f78113;
+    padding: 5px;
+}
+
+.title{
+    color: #fff;
+    padding: 5px;
+}
+
+.divisoria{
+    background-color: #fff;
+    width: 3px;
+    height: 50px;
+}
+
+.divisoria-deitada{
+    background-color: #fff;
+    width: 100%;
+    height: 3px;
+}
+
+.titulo{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+}
+
