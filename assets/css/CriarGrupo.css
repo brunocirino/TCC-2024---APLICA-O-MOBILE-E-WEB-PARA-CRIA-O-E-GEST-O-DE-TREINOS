@@ -6,9 +6,10 @@
     font-family: 'Inter', sans-serif;
 }
 body{
-    background-color: #303238;
+    background-image: url('../img/Background.jpg');
+    background-repeat: repeat; /* Faz a imagem se repetir */  
+    background-size: 450px 400px;  
 }
-
 
 
 section{

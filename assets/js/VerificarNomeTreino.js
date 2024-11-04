@@ -42,13 +42,25 @@ document.addEventListener("DOMContentLoaded", function() {
             var valor = event.target.value;
             $.ajax({
                 url: '../controller/CadastroTreino.php',
-                method: 'POST',
+                method: 'GET',
                 data: { NomeInserido: valor , from: 'VerificarNome', id_professor: idProfessor},
                 dataType: 'json', // Especificar o tipo de dados esperado como JSON
                 success: function(response) {
                     // Faça algo com a resposta JSON recebida
+                    console.log('Tipo de resposta:', typeof response);
+                    console.log(response);
+
+                    // Se a resposta for uma string JSON, parse-a
+                    if (typeof response === 'string') {
+                        try {
+                            response = JSON.parse(response);
+                        } catch (e) {
+                            console.error('Erro ao converter resposta para JSON:', e);
+                            return;
+                        }
+                    }
                     
-                    if(response == false){
+                    if(response.nomeValido == false){
                         console.log(response);
                         nomeTreinoInput.style.borderColor = 'red';
                         alert('Você não pode criar treinos com o nome igual!, Altere o nome do treino')

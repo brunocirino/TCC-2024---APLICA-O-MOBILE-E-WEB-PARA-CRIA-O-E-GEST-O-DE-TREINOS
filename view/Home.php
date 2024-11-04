@@ -21,6 +21,7 @@
                 <ul>
                     <li class="nav-item active"><a href="Home.php" class="nav-link">Início</a></li>
                     <li class="nav-item"><a href="CriarTreino.php" class="nav-link">Criar treino</a></li>
+                    <li class="nav-item"><a href="CadastroAcademia.php" class="nav-link">Cadastrar academias</a></li>
                     <li class="nav-item"><a href="TreinosCriados.php" class="nav-link">Consultar treinos</a></li>
                     <li class="nav-item"><a href="CriarGrupo.php" class="nav-link">Criar Grupo</a></li>
                 </ul>

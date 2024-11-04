@@ -6,22 +6,25 @@
         protected $Exercicios;
         protected $Series;
         protected $Reps;
+        protected $peso;
         protected $comentarios;
         protected $Nm_treino;
         protected $linha = [];
        
 
-        public function __construct($ID_treino, $ID_Prof, $Nm_treino, $Exercicio, $serie, $reps, $comentario){
+        public function __construct($ID_treino, $ID_Prof, $Nm_treino, $Exercicio, $serie, $reps, $peso, $comentario){
             $this->id = $ID_treino;
             $this->ID_Prof = $ID_Prof;
             $this->Nm_treino = $Nm_treino;
             $this->Exercicios = $Exercicio;
             $this->Series = $serie;
             $this->Reps = $reps;
+            $this->peso = $peso;
             $this->comentarios = $comentario;
             array_push($this->linha, $Exercicio);
             array_push($this->linha, $serie);
             array_push($this->linha, $reps);
+            array_push($this->linha, $peso);
             array_push($this->linha, $comentario);
 
         }
@@ -58,6 +61,9 @@
             return $this->Reps;
         }
 
+        public function get_pesos(){
+            return $this->peso;
+        }
         public function get_Comentarios(){
             return $this->comentarios;
         }

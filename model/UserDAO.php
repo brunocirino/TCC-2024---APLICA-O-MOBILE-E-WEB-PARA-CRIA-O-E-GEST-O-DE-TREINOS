@@ -19,79 +19,290 @@
 
         public function cadastrarUsuario($usuario){
 
-            $inserir = $this->banco->prepare("INSERT INTO usuários (email, senha, primeiroNome, Sobrenome, Celular, genero) VALUES (?,?,?,?,?,?);");
+            $url = 'http://localhost:3001/cadastrarUsuario/' 
+            . urlencode($usuario->get_email()). '/'
+            . urlencode($usuario->get_senha()). '/'
+            . urlencode($usuario->get_PrimeiroNome()). '/'
+            . urlencode($usuario->get_Sobrenome()). '/'
+            . urlencode($usuario->get_telefone()). '/'
+            . urlencode($usuario->get_Genero());
 
-            $novo_usuario = array($usuario->get_email(), $usuario->get_senha(), $usuario->get_PrimeiroNome(), $usuario->get_Sobrenome(), $usuario->get_telefone(), $usuario->get_Genero());
+           $filePath = 'C:\Users\bruno\OneDrive\Área de Trabalho\Log_Erro_TCC\Log_Erro_TCC.txt';
 
-            if($inserir->execute($novo_usuario)){
-                return true;
+           // Verificar se o arquivo está acessível e pode ser escrito
+           if (is_writable($filePath)) {
+               file_put_contents($filePath, "cadastrarUSER: " . $url . "\n", FILE_APPEND);
+           } else {
+               echo "Não foi possível escrever no arquivo de log.";
+           }
+
+            $ch = curl_init();
+
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_POST, 1); // Define a requisição como POST
+            curl_setopt($ch, CURLOPT_POSTFIELDS, []); // Pode ser necessário incluir dados adicionais se necessário
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
             }
-            
-            return false;
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
+
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            return json_encode($resultados);
         }
 
         public function cadastrarEndereco($endereco){
 
-            $inserir = $this->banco->prepare("INSERT INTO endereços (id_usuario, cep, cidade, estado, bairro, numero, logradouro) VALUES (?,?,?,?,?,?,?);");
+            $url = 'http://localhost:3001/cadastrarEndereco/' 
+            . urlencode($endereco->get_ID_usuario()). '/'
+            . urlencode($endereco->get_cep()). '/'
+            . urlencode($endereco->get_cidade()). '/'
+            . urlencode($endereco->get_estado()). '/'
+            . urlencode($endereco->get_bairro()). '/'
+            . urlencode($endereco->get_numero()). '/'
+            . urlencode($endereco->get_logradouro());
 
-            $novo_endereco = array($endereco->get_ID_usuario(), $endereco->get_cep(), $endereco->get_cidade(), $endereco->get_estado(), $endereco->get_bairro(), $endereco->get_numero(), $endereco->get_logradouro());
+           $filePath = 'C:\Users\bruno\OneDrive\Área de Trabalho\Log_Erro_TCC\Log_Erro_TCC.txt';
 
-            if($inserir->execute($novo_endereco)){
-                return true;
+           // Verificar se o arquivo está acessível e pode ser escrito
+           if (is_writable($filePath)) {
+               file_put_contents($filePath, "CadastrarEndereco: " . $url . "\n", FILE_APPEND);
+           } else {
+               echo "Não foi possível escrever no arquivo de log.";
+           }
+
+            $ch = curl_init();
+
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_POST, 1); // Define a requisição como POST
+            curl_setopt($ch, CURLOPT_POSTFIELDS, []); // Pode ser necessário incluir dados adicionais se necessário
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
             }
-            
-            return false;
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
+
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            return json_encode($resultados);
         }
 
         public function login($email, $senha){
 
-            $query = $this->banco->prepare("SELECT COUNT(id) as count FROM usuários WHERE email = :email AND senha = :senha");
-            $query->bindParam(":email", $email);
-            $query->bindParam(":senha", $senha);
-            $query->execute();
+            $url = 'http://localhost:3001/login/' 
+            . urlencode($email). '/'
+            . urlencode($senha);
 
-            $result = $query->fetch(PDO::FETCH_ASSOC);
+            $filePath = 'C:\Users\bruno\OneDrive\Área de Trabalho\Log_Erro_TCC\Log_Erro_TCC.txt';
 
-            if($result['count'] > 0) {
-                return true;
-            } 
+            // Verificar se o arquivo está acessível e pode ser escrito
+            if (is_writable($filePath)) {
+                file_put_contents($filePath, "Login: " . $url . "\n", FILE_APPEND);
+            } else {
+                echo "Não foi possível escrever no arquivo de log.";
+            }
+
+            $ch = curl_init();
+
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
             
-            return false;
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
+            }
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
+
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            return json_encode($resultados);
+            
+            return $result;
         }
 
-        public function excluir_usuario($documento){    
+        public function excluir_usuario($idUsuario){    
 
-            $delete = $this->banco->prepare("DELETE FROM cadastro WHERE DOCUMENTO=?");
-            $cadastro = array($documento);
+            $url = 'http://localhost:3001/excluir_usuario/' 
+            . urlencode($idUsuario);
 
-            if($delete->execute($cadastro)){
-                return true;
+            $filePath = 'C:\Users\bruno\OneDrive\Área de Trabalho\Log_Erro_TCC\Log_Erro_TCC.txt';
+
+            // Verificar se o arquivo está acessível e pode ser escrito
+            if (is_writable($filePath)) {
+                file_put_contents($filePath, "excluir_usuario: " . $url . "\n", FILE_APPEND);
+            } else {
+                echo "Não foi possível escrever no arquivo de log.";
             }
-        
-            return false;
+
+            $ch = curl_init();
+
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE'); // Especifica o método DELETE
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
+            }
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
+
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            return json_encode($resultados);
         }
 
         public function ConsultarIDUsuario($email){    
 
-            $consulta = $this->banco->prepare('SELECT ID FROM usuários WHERE email = :email');
-            $consulta->bindParam(':email', $email);
-            $consulta->execute();
+            $url = 'http://localhost:3001/ConsultarIDUsuario/' 
+            . urlencode($email);
 
-            $idUsuario = $consulta->fetchColumn();
+            $filePath = 'C:\Users\bruno\OneDrive\Área de Trabalho\Log_Erro_TCC\Log_Erro_TCC.txt';
+
+            // Verificar se o arquivo está acessível e pode ser escrito
+            if (is_writable($filePath)) {
+                file_put_contents($filePath, "ConsultarIDUsuario: " . $url . "\n", FILE_APPEND);
+            } else {
+                echo "Não foi possível escrever no arquivo de log.";
+            }
+
+            $ch = curl_init();
+
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
             
-            return $idUsuario;
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
+            }
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
+
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            return json_encode($resultados);
         }
 
         public function Atualizar_ID_usuario($idUsuario, $email){
 
-            $update = $this->banco->prepare("UPDATE usuários SET id=? WHERE email=?");
-            $editar_endereco = array($idUsuario, $email);
+            $url = 'http://localhost:3001/Atualizar_ID_usuario/' 
+            . urlencode($idUsuario). '/'
+            . urlencode($email);
 
-            if($update->execute($editar_endereco)){
-                return true;
+            $filePath = 'C:\Users\bruno\OneDrive\Área de Trabalho\Log_Erro_TCC\Log_Erro_TCC.txt';
+
+            // Verificar se o arquivo está acessível e pode ser escrito
+            if (is_writable($filePath)) {
+                file_put_contents($filePath, "Atualizar_ID_usuario: " . $url . "\n", FILE_APPEND);
+            } else {
+                echo "Não foi possível escrever no arquivo de log.";
             }
+
+            $ch = curl_init();
+
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH'); // Método PATCH
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
             
-            return false;
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
+            }
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
+
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            return json_encode($resultados);
         }
 
     }

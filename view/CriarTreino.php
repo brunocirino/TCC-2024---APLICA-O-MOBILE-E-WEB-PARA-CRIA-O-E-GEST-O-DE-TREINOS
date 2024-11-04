@@ -1,30 +1,44 @@
 <?php
-    session_start();
+session_start();
 
-    $success = isset($_GET['success']) ? $_GET['success'] : null;
+$success = isset($_GET['success']) ? $_GET['success'] : null;
 
-    // Verifica se a sessão do id está definida
-    if(!isset($_SESSION['id'])) {
-        // Se não estiver definida, redireciona para a página de login
-        
-        header("Location: ../view/Login.php?from=criar_treinos");
-        exit();
-    } 
+if (!isset($_SESSION['id'])) {
+    header("Location: ../view/Login.php?from=criar_treinos");
+    exit();
+}
 
-    if ($success == 1) {
-        ?>
-        <script>alert('Treino Cadastrado com sucesso');</script>
-        <script> window.location.href = "../view/CriarTreino.php";</script>
-        <?php
-        
-    } elseif ($success == 2) {
-        ?>
-        <script>alert('Opss.. Ocorreu um erro inesperado');</script>
-        <script> window.location.href = "../view/CriarTreino.php";</script>
-        <?php
+
+echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
+echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">';
+echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>';
+
+echo "<style>
+    /* Estilo personalizado para o Toastr */
+    .toast {
+        opacity: 0.9 !important; /* Ajusta a opacidade (0.0 a 1.0) */
     }
+</style>";
 
-    echo "<script>var idProfessor = " . $_SESSION['id'] . ";</script>";
+echo "<script>
+    $(document).ready(function() {
+        const success = $success;
+        if (success === 1) {
+            toastr.options.positionClass = 'toast-bottom-right';
+            toastr.success('Treino Cadastrado com sucesso.', 'Sucesso');
+            setTimeout(function() {
+                window.location.href = '../view/CriarTreino.php';
+            }, 3000);
+        } else if (success === 2) {
+            alert('Opss.. Ocorreu um erro inesperado');
+            window.location.href = '../view/CriarTreino.php';
+        }
+    });
+    alert('teste!)
+</script>";
+
+echo "<script>var idProfessor = " . $_SESSION['id'] . ";</script>";
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +65,7 @@
                 <ul>
                     <li class="nav-item"><a href="Home_Logado.php" class="nav-link">Início</a></li>
                     <li class="nav-item active"><a href="CriarTreino.php" class="nav-link">Criar treino</a></li>
+                    <li class="nav-item"><a href="CadastroAcademia.php" class="nav-link">Cadastrar academias</a></li>
                     <li class="nav-item"><a href="TreinosCriados.php" class="nav-link">Consultar treinos</a></li>
                     <li class="nav-item"><a href="CriarGrupo.php" class="nav-link">Criar Grupo</a></li>
                 </ul>
@@ -93,7 +108,7 @@
 
     <main>
     <div class="container">
-        <form action="../controller/CadastroTreino.php" method="post">          
+        <form action="../controller/CadastroTreino.php" method="POST">          
             <div class="titulo">
                 <div class="input-box-titulo">
                     <div class="title">
@@ -102,6 +117,19 @@
                     
                     <div class="input-titulo">
                         <input type="text" id="NomeTreino" name="NomeTreino" placeholder="Digite aqui" required>
+                    </div>
+                    
+                </div>
+
+                <div class="input-box-titulo">
+                    <div class="title">
+                        <a>Selecione uma academia</a>
+                    </div>
+                    
+                    <div class="input-select-academia">
+                        <select class="Academia" name="Academia" id="Academia">
+                            <option value="0"> </option>
+                        </select>
                     </div>
                     
                 </div>
@@ -166,6 +194,17 @@
                 
                     <div class="input-reps">
                         <input type="text" name="reps[]" required>    
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <div class="title">
+                        <a>Peso</a>
+                    </div>
+                
+                
+                    <div class="input-peso">
+                        <input type="text" name="peso[]" required>    
                     </div>
                 </div>
 

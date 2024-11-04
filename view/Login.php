@@ -28,6 +28,8 @@ if ($error == 1) {
     <link rel="stylesheet" href="../assets/css/inicio.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Toastify/1.11.2/Toastify.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Toastify/1.11.2/Toastify.min.js"></script>
     <title>TCC</title>
 </head>
 <body>
@@ -41,6 +43,7 @@ if ($error == 1) {
                 <ul>
                     <li id="home" class="nav-item active"><a href="Home.php" class="nav-link">Início</a></li>
                     <li id="CriarTreino"class="nav-item"><a href="CriarTreino.php" class="nav-link">Criar treino</a></li>
+                    <li class="nav-item"><a href="CadastroAcademia.php" class="nav-link">Cadastrar academias</a></li>
                     <li class="nav-item"><a href="TreinosCriados.php" class="nav-link">Consultar treinos</a></li>
                     <li class="nav-item"><a href="CriarGrupo.php" class="nav-link">Criar Grupo</a></li>
                 </ul>
@@ -102,4 +105,5 @@ if ($error == 1) {
     </main>
 </body>
 <script src="../assets/js/formAction.js"></script>
+<script src="../assets/js/notificacao.js"></script>
 </html>

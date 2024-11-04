@@ -1,10 +1,7 @@
 <?php
     require_once('../model/GrupoExistenteDAO.php');
-    require_once('../model/userDAO.php');
   
     $nome = $_POST['nome'];
-
-    $userDAO = new UserDAO();
 
     $Criar = new GrupoExistenteDAO();
 

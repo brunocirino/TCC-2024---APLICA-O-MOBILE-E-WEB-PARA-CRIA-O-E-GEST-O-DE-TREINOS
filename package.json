@@ -1,0 +1,22 @@
+{
+  "name": "web_tcc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node ./API_REST/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@api/render-api": "file:App/.api/apis/render-api",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "ngx-french-toast": "^18.0.2",
+    "nodemailer": "^6.9.15",
+    "pg": "^8.12.0"
+  }
+}

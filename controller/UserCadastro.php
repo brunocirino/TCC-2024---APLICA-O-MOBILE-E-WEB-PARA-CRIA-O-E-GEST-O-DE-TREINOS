@@ -21,7 +21,11 @@ require_once('../model/userDAO.php');
 
     if($userDAO->cadastrarUsuario($user)){
 
-        $iduser = $userDAO->ConsultarIDUsuario($email);
+        $iduserconsulta = $userDAO->ConsultarIDUsuario($email);
+
+        $iduserconsulta = json_decode($iduserconsulta, true);
+
+        $iduser = ($iduserconsulta[0]['ID']);
 
         $user->set_id($iduser);
         var_dump($iduser);
@@ -44,13 +48,13 @@ require_once('../model/userDAO.php');
         $_SESSION['id'] = $usuario['id'];
 
         ?>
-        <script>alert('Cadastro realizado com sucesso!');</script>
+        echo "<script>showToast('Cadastro realizado com sucesso!');</script>";
         <?php
 
         header("Location: ../view/Login.php");
     } else {
         ?>
-            <script>alert('Erro inesperado ao cadastrar');</script>
+            cho "<script>showToast('Erro inesperado ao cadastrar');</script>";
         <?php
     }
     

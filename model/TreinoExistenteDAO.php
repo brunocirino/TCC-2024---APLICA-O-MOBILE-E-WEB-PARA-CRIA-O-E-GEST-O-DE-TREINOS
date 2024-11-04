@@ -1,34 +1,97 @@
 <?php  
 
-require_once("UserDAO.php"); 
-
     class TreinoExistenteDAO{
-        private $banco;
+       
 
-        public function __construct(){
-            $this->banco = new PDO('mysql:host='.HOST.'; dbname='.DB_NAME,USER,PASSWORD);
-        }
+        public function ConsultaTreinoExist($IDgrupo, $valueCampo, $id_academia){
+   
+            $url = 'http://localhost:3001/ConsultaTreinoExist/' 
+            . urlencode($IDgrupo). '/'
+            . urlencode($valueCampo). '/'
+            . urlencode($id_academia);
+           
 
-        public function ConsultaTreinoExist($IDgrupo, $valueCampo){
-                 
-                $consulta = $this->banco->prepare('SELECT nome FROM tipos_treinos WHERE nome LIKE :valueCampo AND id_tipo = :IDgrupo');
-                $consulta->bindValue(':valueCampo', '%' . $valueCampo . '%', PDO::PARAM_STR);
-                $consulta->bindValue(':IDgrupo',$IDgrupo);
-                $consulta->execute();
-                $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-                return $resultados;
+            $ch = curl_init();
+
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
+            }
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
+
+
+            //file_put_contents('C:\Users\bruno\OneDrive\Área de Trabalho\Log_Erro_TCC\Log_Erro_TCC.txt', "URL: " . $url . "\n", FILE_APPEND);
+
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            echo json_encode($resultados);
             
         }
 
         public function ConsultaTreinoExist_idProf($ID_prof){
                  
-            $consulta = $this->banco->prepare('SELECT DISTINCT nm_treino FROM treinos_criados WHERE id_prof = :ID_prof');
-            $consulta->bindValue(':ID_prof',$ID_prof);
-            $consulta->execute();
-            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $url = 'http://localhost:3001/ConsultaTreinoExist_idProf/' 
+            . urlencode($ID_prof);
+
+            $filePath = 'C:\Users\bruno\OneDrive\Área de Trabalho\Log_Erro_TCC\Log_Erro_TCC.txt';
+
+            // Verificar se o arquivo está acessível e pode ser escrito
+            if (is_writable($filePath)) {
+                file_put_contents($filePath, "ConsultarTreinoExist_IdProf: " . $url . "\n", FILE_APPEND);
+            } else {
+                echo "Não foi possível escrever no arquivo de log.";
+            }
+
+            $ch = curl_init();
+
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
+            }
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
+
+
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
             return $resultados;
             
         }
+
+        
         
     }
 ?>

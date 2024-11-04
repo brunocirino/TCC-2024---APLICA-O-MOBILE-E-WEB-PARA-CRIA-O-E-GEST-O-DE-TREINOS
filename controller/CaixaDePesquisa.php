@@ -2,18 +2,19 @@
     require_once('../model/TreinoExistenteDAO.php');
     require_once('../model/userDAO.php');
 
-    $IDgrupo = $_POST['IDgrupo'];
-    $exercicios = $_POST['exercicio'];   
+    $IDgrupo = $_GET['IDgrupo'];
+    $exercicios = $_GET['exercicio'];   
+    $id_Academia = $_GET['IdAcademia'];
 
-    $userDAO = new UserDAO();
 
     $consulta = new TreinoExistenteDAO();
 
-    $resultado = $consulta->ConsultaTreinoExist($IDgrupo, $exercicios);
+    $resultado = $consulta->ConsultaTreinoExist($IDgrupo, $exercicios, $id_Academia);
 
     header('Content-Type: application/json');
 
     // Envie os resultados como JSON
-    echo trim(json_encode($resultado));
+    return json_encode($resultado);
+
 
 ?>

@@ -6,7 +6,9 @@
     font-family: 'Inter', sans-serif;
 }
 body{
-    background-color: #303238;
+    background-image: url('../img/Background.jpg');
+    background-repeat: repeat; /* Faz a imagem se repetir */  
+    background-size: 450px 400px;  
 }
 
 
@@ -45,11 +47,13 @@ main{
 .container{ 
     margin-top: 5%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-content: center;
     background-color: #24252a;
     box-shadow: 0px 3px 10px #f78113;
     border-radius: 8px;
+    max-width: 80%;
+    margin-bottom: 5%;
 }
 form{
     width: 100%;
@@ -211,6 +215,7 @@ form{
     display: none;
 }
 #AlunoSelecionado{
+    font-size: 12px;
     padding: 5px;
     color: #fff;
     display: none;
@@ -281,6 +286,13 @@ form{
     align-items: center;
 }
 
+.input-box-titulo .title{
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
 .divisoria{
     background-color: #fff;
     width: 3px;
@@ -295,7 +307,7 @@ form{
 
 .titulo{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     padding: 5px;
 }
@@ -347,4 +359,150 @@ form{
     background: #f78113;
     border-radius: 5px;
     color: #fff;
+}
+
+
+.TreinoSelecionado{
+    padding: 10px;
+    display: flex;
+}
+
+
+table thead tr th{
+    border-radius: 5px 5px 0 0;
+    width: 300px;
+    padding: 12px 15px;
+    border-collapse: collapse;
+    border: 1px solid #f78113;
+    background-color: #f78113;
+    color: #fff;
+}
+
+table tbody tr td{
+    padding: 12px 15px;
+    width: 400px;
+    
+    border-bottom: 1px solid #f78113; /* Borda à direita */
+    color: #fff;
+}
+
+td bi bi-app{
+    display: block; /* Transforma o botão em um bloco para ajustar o alinhamento */
+    margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+.cabecalho{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.row-buttons{
+    display: flex;
+    margin-left: 5px;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+}
+
+.row-buttons button{
+    padding: 7px;
+    color: #000;
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-left: 10px;
+    border: 2px solid #f78113;
+    border-radius: 5px;
+}
+
+.row-buttons button:hover{
+    background-color: #f78113;
+}
+.titulo-tabela{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 360px;
+    font-size: 10px;
+    color: white;
+}
+
+.conteudo{
+    display: none;
+}
+
+.conteudo.show{
+    display: initial;
+}
+
+.tbs-buttons {
+    display: flex;
+    gap: 6px
+}
+
+.tab-btn{
+    border: none;
+    color: #f78113;
+    background-color: #202124;
+    border-radius: 8px 8px 0px 0px;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+
+.tab-btn.active{
+    background-color: #303238;
+}
+
+.tab-btn:hover{
+    background-color: #f78113;
+}
+
+
+.tabela{
+    display: none;
+}
+
+.row-input{
+    display: flex;
+    justify-content:  flex-start;
+    align-items: center;
+    padding: 5px;
+    width: 200px;
+}
+
+.row-input input{
+    width: 160px;
+    height: 35px;
+    padding: 5px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    color: #000;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+.row-input-gestao{
+    display: flex;
+    justify-content:  flex-start;
+    align-items: center;
+    padding: 5px;
+    width: 100px;
+}
+
+.row-input-gestao input{
+    width: 160px;
+    height: 35px;
+    padding: 5px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #f78113;
+    color: #000;
+    font-size: 13px;
+    border-radius: 5px;
 }

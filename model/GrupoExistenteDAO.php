@@ -3,48 +3,125 @@
 require_once("UserDAO.php"); 
 
     class GrupoExistenteDAO{
-        private $banco;
-
-        public function __construct(){
-            $this->banco = new PDO('mysql:host='.HOST.'; dbname='.DB_NAME,USER,PASSWORD);
-        }
-
+        
         public function ConsultaGrupoExist(){
              
-                $consulta = $this->banco->prepare('SELECT id, Nome FROM grupo_treino');
-                $consulta->execute();
-                $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $url = 'http://localhost:3001/ConsultaGrupoExist';
+            $ch = curl_init();
+    
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
+            }
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
 
-                
-                return $resultados;
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            // Retornar os resultados como JSON
+            echo json_encode($resultados);
 
         }
 
         public function CriarGrupo($nome){
-             
-            $consulta = $this->banco->prepare('INSERT INTO grupo_treino (Nome) VALUES (?)');
-            $valor = array($nome);
-            
-            if($consulta->execute($valor)){
-                return true;
+
+            $url = 'http://localhost:3001/CriarGrupo/' . urlencode($nome);;
+            $ch = curl_init();
+
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_POST, 1); // Define a requisição como POST
+            curl_setopt($ch, CURLOPT_POSTFIELDS, []); // Pode ser necessário incluir dados adicionais se necessário
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
             }
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
 
-            return false;
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            // Retornar os resultados como JSON
+            echo json_encode($resultados);
             
-
         }
 
         public function cadastrarTreino($Treino){
 
-            $inserir = $this->banco->prepare("INSERT INTO treinos_criados (id_prof, nm_treino, exercicios, series, repeticoes, comentarios) VALUES (?,?,?,?,?,?);");
+            $url = 'http://localhost:3001/CadastrarTreino/' 
+            . urlencode($Treino->get_ID_Prof()). '/'
+            . urlencode( $Treino->get_NomeTreino()). '/'
+            . urlencode($Treino->get_Exercicios()). '/'
+            . urlencode($Treino->get_Series()) . '/'
+            . urlencode($Treino->get_Repeticoes()) . '/'
+            . urlencode($Treino->get_Comentarios()) . '/';
 
-            $novo_treino = array($Treino->get_ID_Prof(), $Treino->get_NomeTeino(), $Treino->get_Exercicios(), $Treino->get_Series(), $Treino->get_Repeticoes(), $Treino->get_Comentarios());
+            $ch = curl_init();
 
-            if($inserir->execute($novo_treino)){
-                return true;
+            // Configurar cURL para a solicitação HTTP
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_POST, 1); // Define a requisição como POST
+            curl_setopt($ch, CURLOPT_POSTFIELDS, []); // Pode ser necessário incluir dados adicionais se necessário
+    
+            // Executar a solicitação
+            $response = curl_exec($ch);
+    
+            // Verificar se houve erro na solicitação
+            if (curl_errno($ch)) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Erro no cURL: ' . curl_error($ch)]);
+                curl_close($ch);
+                return;
             }
-            
-            return false;
+    
+            // Fechar a conexão cURL
+            curl_close($ch);
+    
+             // Decodificar a resposta JSON
+            $resultados = json_decode($response, true);
+
+            // Definir o cabeçalho Content-Type como JSON
+            header('Content-Type: application/json');
+
+            // Retornar os resultados como JSON
+              // Verificar se a propriedade 'sucesso' está presente e é 'true'
+            if (isset($resultados['sucesso']) && $resultados['sucesso'] === true) {
+                echo json_encode(true); // Retorna true se 'sucesso' for true
+            } else {
+                echo json_encode(false); // Retorna false se 'sucesso' for false ou se não estiver presente
+            }
         }
 
     }

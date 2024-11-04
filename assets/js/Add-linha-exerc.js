@@ -57,6 +57,17 @@ function Linha_adicional() {
             </div>
 
             <div class="input-box">
+                    <div class="title">
+                        <a>Peso</a>
+                    </div>
+                
+                
+                    <div class="input-peso">
+                        <input type="text" name="peso[]" required>    
+                    </div>
+            </div>
+
+            <div class="input-box">
                 <div class="title">
                     <a>Comentarios:</a>
                 </div>
