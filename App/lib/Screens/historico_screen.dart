@@ -54,20 +54,31 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
         final responseData = jsonDecode(response.body);
         if (responseData['sucesso'] == true) {
           final results = responseData['results'] as List<dynamic>;
+          print(results);
 
           List<Widget> tempHistoricoCards = [];
 
           // Criar os cartões com os dados do histórico
           for (var treino in results) {
-            final String nomeTreino = treino['nm_treino'];
-            final String dataTreino = treino['data'];
-            final int idTreino = treino['id'];
+            final String nomeTreino = treino['nm_treino'] ?? 'N/A';
+            final String dataTreino =
+                treino['data'] ?? DateTime.now().toString();
+            final int idTreino = int.tryParse(treino['id'].toString()) ?? 0;
+            final int series = int.tryParse(treino['series'].toString()) ?? 0;
+            final int repeticoes =
+                int.tryParse(treino['repeticoes'].toString()) ?? 0;
+            final int peso = int.tryParse(treino['peso'].toString()) ?? 0;
+            final String cometarios = treino['cometarios'] ?? 'sem comentários';
 
             tempHistoricoCards.add(
               HistoricoCard(
                 id: idTreino,
                 nmTreino: nomeTreino,
                 data: DateTime.parse(dataTreino),
+                series: series,
+                repeticoes: repeticoes,
+                peso: peso,
+                cometarios: cometarios,
               ),
             );
           }
