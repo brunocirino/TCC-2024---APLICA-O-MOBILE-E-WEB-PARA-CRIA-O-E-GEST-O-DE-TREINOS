@@ -72,13 +72,13 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
 
             tempHistoricoCards.add(
               HistoricoCard(
-                id: idTreino,
+                id_aluno: idAluno,
                 nmTreino: nomeTreino,
                 data: DateTime.parse(dataTreino),
                 series: series,
                 repeticoes: repeticoes,
                 peso: peso,
-                cometarios: cometarios,
+                comentarios: cometarios,
               ),
             );
           }

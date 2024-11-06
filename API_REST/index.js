@@ -417,11 +417,11 @@ server.get('/GetTreinos/APP/:id_aluno', (req, res) => {
 
 server.get('/GetHistorico/APP/:id_aluno', (req, res) => {
     let query = `
-        SELECT h.id, h.data_exe, t.nm_treino 
-        FROM \`historico_treino\` AS h 
+        SELECT h.id, h.data_exe, t.nm_treino, h.id_aluno, h.nm_treino as 'exercicios', h.series, h.repeticoes, h.peso, h.comentarios
+        FROM historico_treino AS h 
         INNER JOIN treinos_criados AS t ON h.id_treino = t.id_identificador 
-        WHERE h.id_aluno = ? 
-        GROUP BY h.id, h.data_exe, t.nm_treino 
+        WHERE h.id_aluno = ?
+        GROUP BY h.data_exe, t.nm_treino 
         ORDER BY h.data_exe DESC;`;
 
     const id_aluno = decodeURIComponent(req.params.id_aluno.replace(/\+/g, " "));
@@ -435,9 +435,14 @@ server.get('/GetHistorico/APP/:id_aluno', (req, res) => {
         const formattedResults = result.map(row => ({
             id: row.id,
             nm_treino: row.nm_treino,
-            data: row.data_exe
+            data: row.data_exe,
+            series: row.series,
+            repeticoes: row.repeticoes,
+            peso: row.peso,
+            comentarios: row.comentarios
         }));
 
+        console.log(formattedResults);
         
         if (formattedResults.length > 0) {
             res.status(200).json({
@@ -445,11 +450,79 @@ server.get('/GetHistorico/APP/:id_aluno', (req, res) => {
                 mensagem: 'Dados dos treinos encontrados com sucesso',
                 results: formattedResults
             });
+            
         } else {
             res.status(404).json({ sucesso: false, mensagem: 'Nenhum treino encontrado para o ID do aluno fornecido' });
         }
     });
 });
+
+server.get('/GetHistoricoPorTreino/APP/:id_aluno/:data/:nmTreino', (req, res) => {
+    // Extrai e loga os parâmetros recebidos
+    const id_aluno = decodeURIComponent(req.params.id_aluno.replace(/\+/g, " "));
+    const data = decodeURIComponent(req.params.data.replace(/\+/g, " "));
+    const nmTreino = decodeURIComponent(req.params.nmTreino.replace(/\+/g, " "));
+
+    console.log('Parâmetros recebidos:');
+    console.log('ID do Aluno:', id_aluno);
+    console.log('Data:', data);
+    console.log('Nome do Treino:', nmTreino);
+
+    // Define a consulta SQL
+    let query = `
+                    SELECT DISTINCT h.id, h.data_exe, t.nm_treino, h.id_aluno, h.nm_treino AS 'exercicios', 
+                            h.series, h.repeticoes, h.peso, h.comentarios
+            FROM historico_treino AS h 
+            INNER JOIN treinos_criados AS t 
+                ON h.id_treino = t.id_identificador
+            WHERE h.id_aluno = ?
+                AND t.nm_treino = ? 
+                AND h.data_exe = ?`;
+
+    console.log('Consulta SQL:', query);
+
+    // Executa a consulta e loga o resultado ou erro
+    connection.query(query, [id_aluno, nmTreino, data], (err, result) => {
+        if (err) {
+            console.error('Erro na consulta:', err);
+            return res.status(500).json({ mensagem: 'Erro na consulta ao banco de dados' });
+        }
+
+        // Loga o resultado bruto da consulta
+        console.log('Resultado bruto da consulta:', result);
+
+        // Formata os resultados para a resposta
+        const formattedResults = result.map(row => ({
+            id: row.id,
+            nm_treino: row.nm_treino,
+            data: row.data_exe,
+            series: row.series,
+            repeticoes: row.repeticoes,
+            peso: row.peso,
+            comentarios: row.comentarios?.trim() || 'sem comentários'  // Verifica se o campo comentarios está vazio ou nulo
+        }));
+
+        // Loga o resultado formatado
+        console.log('Resultado formatado:', formattedResults);
+
+        // Verifica se houve resultados e responde com os dados ou uma mensagem de erro
+        if (formattedResults.length > 0) {
+            res.status(200).json({
+                sucesso: true,
+                mensagem: 'Dados dos treinos encontrados com sucesso',
+                results: formattedResults
+            });
+        } else {
+            console.log('Nenhum treino encontrado para o ID do aluno e data fornecidos');
+            res.status(404).json({
+                sucesso: false,
+                mensagem: 'Nenhum treino encontrado para o ID do aluno fornecido'
+            });
+        }
+    });
+});
+
+
 
 
 server.get('/GetNmTreinos/APP/:id_aluno', (req, res) => {
